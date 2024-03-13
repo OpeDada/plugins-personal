@@ -2,10 +2,6 @@ id: test-plugin
 name: Test plugin
 version: 1.0.0
 extensions:
-id: reearth-plugin-examples
-name: Sample plugins
-version: 1.0.1
-extensions:
   - id: test-widget
     type: widget
     name: Test
