@@ -1,0 +1,24 @@
+id: test-plugin
+name: Test plugin
+version: 1.0.0
+extensions:
+id: reearth-plugin-examples
+name: Sample plugins
+version: 1.0.1
+extensions:
+  - id: test-widget
+    type: widget
+    name: Test
+  - id: linkedIn-share-widget
+    type: widget
+    name: LinkedIn Share Widget
+    schema:
+      groups:
+        -id: default
+        fields:
+          - id: url
+            type: string
+            title: URL
+          - id: text
+            type: string
+            title: Text
