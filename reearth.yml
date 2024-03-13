@@ -10,11 +10,11 @@ extensions:
     name: LinkedIn Share Widget
     schema:
       groups:
-        -id: default
-        fields:
-          - id: url
-            type: string
-            title: URL
-          - id: text
-            type: string
-            title: Text
+        - id: default
+          fields:
+            - id: url
+              type: string
+              title: URL
+            - id: text
+              type: string
+              title: Text
