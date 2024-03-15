@@ -1,39 +1,31 @@
 reearth.ui.show(
   `<style>
       body {
-        margin: 0
+        margin: 0;
       }
-    </style>
+  </style>
+<!-- Linkedin -->
 
-    <!-- LinkedIn -->
+	<div class="linkedin-share-button" data-href="https://reearth.io/" data-layout="button" data-size="large" id="linkedin-share">
+		<a target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url=https://reearth.io/">
+		Share
+		</a>
+	</div>
 
-    <a class="linkedin-share-button"
-      target="_blank"
-      href="https://www.linkedin.com/sharing/share-offsite/?url=https://reearth.io/"
-      data-size="large"
-      data-text="Default text"
-      data-url="https://reearth.io/"
-      data-lang="en"
-      data-dnt="true"
-      id="linkedin-button">
-      Share
-    </a>
+<script>
+	// recieve message
+  window.addEventListener("message", e => {
+    if (e.source !== parent || !e.data || e.data.type !== "linkedin") return;
+    property = e.data.property;
+    if (property) {
+      let link = document.getElementById("linkedin-share")
+      link.setAttribute('data-href', property.url);
+      link.setAttribute('data-text', property.text);
+    }
+  });
+</script>
 
-    <script>
-          // receive message
-          window.addEventListener("message", e => {
-          if (e.source !== parent || !e.data || e.data.type !== "linkedin") return;
-          property = e.data.property;
-          if (property.url) {
-            let link = document.getElementById("linkedin-button")
-            link.setAttribute('data-url', property.url);
-            link.setAttribute('data-text', property.text);
-          }
-        });
-
-    </script>
-
-`,
+  `,
   { visible: true }
 );
 
