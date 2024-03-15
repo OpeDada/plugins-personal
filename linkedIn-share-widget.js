@@ -9,7 +9,7 @@ reearth.ui.show(
 
     <a class="linkedin-share-button"
       target="_blank"
-      href="https://www.linkedin.com/sharing/share-offsite/"
+      href="https://www.linkedin.com/sharing/share-offsite/?url=https://reearth.io/"
       data-size="large"
       data-text="Default text"
       data-url="https://reearth.io/"
