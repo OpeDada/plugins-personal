@@ -1,12 +1,13 @@
-const html = `
+reearth.ui.show(
+  `
 <style>
   body {
     margin: 0
   }
-</stye>
+</style>
 
 <!-- LinkedIn -->
-<a class="linkedIn-share-button"
+  <a class="linkedIn-share-button"
   href="https://www.linkedin.com/share"
     data-size="large"
     data-text="Default text"
@@ -28,9 +29,13 @@ const html = `
       link.setAttribute('data-text', property.text);
     }
   });
-</script>
-  `;
-reearth.ui.show(html);
+
+  </script>
+
+
+`,
+  { visible: true }
+);
 
 // post message
 reearth.on("update", send);
