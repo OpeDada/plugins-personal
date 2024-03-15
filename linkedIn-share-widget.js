@@ -9,7 +9,7 @@ reearth.ui.show(
 
     <a class="linkedin-share-button"
       target="_blank"
-      href="https://www.linkedin.com/share"
+      href="https://www.linkedin.com/sharing/share-offsite/"
       data-size="large"
       data-text="Default text"
       data-url="https://reearth.io/"
@@ -22,7 +22,7 @@ reearth.ui.show(
     <script>
           // receive message
           window.addEventListener("message", e => {
-          if (e.source !== parent || !e.data) return;
+          if (e.source !== parent || !e.data || e.data.type !== "linkedin") return;
           property = e.data.property;
           if (property.url) {
             let link = document.getElementById("linkedin-button")
