@@ -7,24 +7,26 @@ reearth.ui.show(
 </style>
 
 <!-- LinkedIn -->
-  <a class="linkedIn-share-button"
-  href="https://www.linkedin.com/share"
-    data-size="large"
-    data-text="Default text"
-    data-url="https://reearth.io/"
-    data-hashtags="reearth"
-    data-lang="en"
-    data-dnt="true"
-    id="linkedIn-button">
-    Share
-    </a>
+<div class="linkedIn-share-button" data-url="https://reearth.io/" data-layout="button" data-size="large" id="linkedIn-share">
+    <a
+      target="_blank"
+      href="https://www.linkedin.com/share"
+      data-size="large"
+      data-text="Default text"
+      data-hashtags="reearth"
+      data-lang="en"
+      data-dnt="true"
+      Share
+      </a>
+  </div>
+
 <script>
      // receive message
     window.addEventListener("message", e => {
     if (e.source !== parent || !e.data || e.data.type !== "linkedIn") return;
     property = e.data.property;
     if (property.url) {
-      let link = document.getElementById("linkedIn-button")
+      let link = document.getElementById("linkedIn-share")
       link.setAttribute('data-url', property.url);
       link.setAttribute('data-text', property.text);
     }
