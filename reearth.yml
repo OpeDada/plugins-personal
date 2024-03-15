@@ -5,7 +5,7 @@ extensions:
   - id: test-widget
     type: widget
     name: Test
-  - id: linkedIn-share-widget
+  - id: linkedin-share-widget
     type: widget
     name: LinkedIn Share Widget
     schema:
