@@ -15,6 +15,3 @@ extensions:
             - id: url
               type: string
               title: URL
-            - id: text
-              type: string
-              title: Text
