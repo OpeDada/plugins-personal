@@ -1,5 +1,5 @@
-id: test-plugin
-name: Test plugin
+id: test-plugins
+name: Test plugins
 version: 1.0.0
 extensions:
   - id: test-widget
@@ -15,3 +15,13 @@ extensions:
             - id: url
               type: string
               title: URL
+  - id: location-name-widget
+    type: widget
+    name: Location Name Widget
+    schema:
+      groups:
+        - id: default
+          fields:
+            - id: text
+              type: string
+              title: Text
