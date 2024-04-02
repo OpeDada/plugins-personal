@@ -17,9 +17,9 @@ const html = `
     input {
       width: 95%;
       border-radius: 6px;
-      border: 1px solid #E91E63
       margin-bottom: 10px;
-      padding: 4px 0;
+      padding: 6px 4px;
+      border: 1px solid #E91E63
     }
     .suggestions {
       overflow-y: auto; /* Enable vertical scrolling when content exceeds the height */
@@ -35,11 +35,11 @@ const html = `
       border-radius: 6px;
       background-color: #01494B
     }
-    #fly {
+    button {
       cursor: pointer;
       border-radius: 6px;
-      padding: 2px 12px;
-      margin-top: 8px;
+      padding: 3px 12px;
+      margin: 8px 8px 0 0;
       border: 1px solid #E91E63
     }
   </style>
@@ -48,6 +48,7 @@ const html = `
     <input type="text" id="address" autocomplete="off" placeholder="Enter address/name of place">
     <div class="suggestions" id="suggestions"></div>
     <button id="fly">Locate</button>
+    <button id="current-location">Find My Location</button>
   </div>
 
   <script>
@@ -139,6 +140,23 @@ const html = `
         alert("Please enter an address");
       }
     });
+
+    // implement event listener and use Geolocation API to get current location
+    document.getElementById("current-location").addEventListener("click", function() {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        const { latitude, longitude } = position.coords;
+        // Use the latitude and longitude to fly the map to the current location
+        parent.postMessage({ fly: { lat: latitude, lng: longitude, height: 500 } }, "*");
+      }, function(error) {
+        console.error("Error obtaining location:", error);
+        alert("Unable to retrieve your location. Please ensure you've granted permission.");
+      });
+    } else {
+      alert("Geolocation is not supported by your browser.");
+    }
+  });
+
   </script>
 `;
 
