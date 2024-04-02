@@ -51,24 +51,37 @@ const html = `
   </div>
 
   <script>
-    //get the suggestions div
-    const suggestions = document.getElementById("suggestions");
 
-    // Function to get input address
+    // implement a debounce fnc for the input search queries to create a delay and wait for 300ms as user is typing
+      function debounce(func, delay) {
+      let debounceTimer;
+      return function() {
+        const context = this;
+        const args = arguments;
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => func.apply(context, args), delay);
+      };
+    }
+
+     // Function to get input address
     const getAddress = () => ({
       address: document.getElementById("address").value.trim()
     });
 
-    // Event listener for input changes
-    // fnc responsible for handling the input event and making async requests to fetch location data.
-    document.getElementById("address").addEventListener("input", async () => {
+    // Event listener for input changes and fnc responsible for handling the input event and making async requests to fetch location data.
+    document.getElementById("address").addEventListener("input", debounce(async () => {
       const { address } = getAddress();
-      suggestions.innerHTML = ""; // Clear previous suggestions
+
       if (address) {
         try {
           // fetch location data based on user input
           const response = await fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(address))
           const data = await response.json();
+
+          //get the suggestions div and clear previous suggestions
+          const suggestions = document.getElementById("suggestions");
+          suggestions.innerHTML = "";
+
           if (data && data.length > 0){
             data.slice(0, 5).forEach(location => {
               const item = document.createElement('div');
@@ -90,7 +103,7 @@ const html = `
       } else {
         suggestions.style.display = 'none'; // Hide suggestions if input is empty
       }
-    })
+    }, 300))
 
     // Event listener for "Fly to" button
     document.getElementById("fly").addEventListener("click", async () => {
