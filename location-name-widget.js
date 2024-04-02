@@ -53,7 +53,7 @@ const html = `
   <script>
 
     // implement a debounce fnc for the input search queries to create a delay and wait for 300ms as user is typing
-      function debounce(func, delay) {
+      const debounce = (func, delay) => {
       let debounceTimer;
       return function() {
         const context = this;
@@ -61,6 +61,18 @@ const html = `
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(() => func.apply(context, args), delay);
       };
+    }
+
+    // implement a fnc to display message if no locations found
+    const displayMessage = (message) => {
+      const suggestions = document.getElementById("suggestions");
+      suggestions.innerHTML = ""; //clear existing suggestions or messages
+
+      const messageDiv = document.createElement('div');
+      messageDiv.textContent = message;
+      messageDiv.style.color = '#FFC107'
+      suggestions.appendChild(messageDiv);
+      suggestions.style.display = 'block' //for the suggestion box to be visible to show the message
     }
 
      // Function to get input address
@@ -95,15 +107,17 @@ const html = `
             });
             suggestions.style.display = 'block'; // Show suggestions if there is a location
           } else {
-            suggestions.style.display = 'none'; // Hide suggestions if there is no location
+            displayMessage("No location found");
           }
         } catch (error) {
           console.error('Error fetching location:', error);
+          displayMessage("Error in fetching data, try again.");
+
         }
       } else {
         suggestions.style.display = 'none'; // Hide suggestions if input is empty
       }
-    }, 300))
+    }, 500))
 
     // Event listener for "Fly to" button
     document.getElementById("fly").addEventListener("click", async () => {
